@@ -1,6 +1,7 @@
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class CyclicBarrierTest {
     }
 
     @Test
+    @DisplayName("When all tasks reached the barrier, they continue")
     void happyPath()  {
         //given
         var cyclicBarrier = new CyclicBarrier(MAX_PARTIES, this::onBarrierTripped);
@@ -59,6 +61,7 @@ public class CyclicBarrierTest {
     }
 
     @Test
+    @DisplayName("When one task does not reach the barrier in time, all tasks are interrupted")
     void unhappyPathTimeout()  {
         //given
         var cyclicBarrier = new CyclicBarrier(MAX_PARTIES, this::onBarrierTripped);
@@ -79,6 +82,7 @@ public class CyclicBarrierTest {
     }
 
     @Test
+    @DisplayName("When one task fails, all tasks are interrupted")
     void unhappyPathTaskDoesNotReachBarrier()  {
         //given
         var cyclicBarrier = new CyclicBarrier(MAX_PARTIES, this::onBarrierTripped);
