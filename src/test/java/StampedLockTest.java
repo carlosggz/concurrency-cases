@@ -86,7 +86,7 @@ public class StampedLockTest {
         do {
             currentRetry++;
             System.out.printf("Thread %s is trying to acquire the lock %n", Thread.currentThread().getName());
-            stamp = lock.tryOptimisticRead();
+            stamp = lock.tryOptimisticRead(); // non-blocking read
 
             if (stamp == 0L) {
                 System.out.printf("Thread %s failed to acquire the lock, retrying... %n", Thread.currentThread().getName());
