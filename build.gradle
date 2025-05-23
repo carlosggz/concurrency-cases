@@ -6,8 +6,10 @@ group = 'org.example'
 version = '1.0-SNAPSHOT'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
@@ -15,9 +17,13 @@ java {
 }
 
 dependencies {
+    implementation platform('io.projectreactor:reactor-bom:2024.0.6')
+    implementation 'io.projectreactor:reactor-core'
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.awaitility:awaitility:4.2.0'
+    testImplementation 'io.projectreactor:reactor-test'
 }
 
 test {
